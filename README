@@ -1,0 +1,153 @@
+"moon-phase-video" notes                               Revised: 120709
+----------------------------------------------------------------------
+
+1. Overview.
+
+1.1. "moon-phase-video"  is  a set of Perl 5 programs that generates a
+short  video clip showing  one month in the life of the Moon. Both GIF
+animation and AVI versions are produced.
+
+To see the  video clip, go to the "examples" directory which is stored
+next  to this README file and view the  GIF file(s) there using a  web
+browser or "viewnior" (a program linked at a later point). Or view the
+AVI file(s) using a  standard multimedia player  such as  "mplayer" or
+"vlc".
+
+There are three source files (two Perl5 programs and one data file):
+
+(a) moonphasepic  - Perl5 program that generates a single video frame.
+
+(b) moonphase2avi - Perl5 program that calls "moonphasepic" repeatedly
+to generate individual frames, then combines the frames to produce ei-
+ther an animated GIF or an AVI file.
+
+(c) albedo_simp750.jpg - Base image used by "moonphasepic".
+
+1.2. "moon-phase-video" was created by OldCoder:
+
+      Site:    http://oldcoder.org/
+      Mail:    oldcoder@yahoo.com
+      GitHub:  https://github.com/OldCoder/
+      Repo:    https://github.com/OldCoder/moon-phase-video.git
+
+The  license used for the current version is Creative Commons Attribu-
+tion NonCommercial  ShareAlike  3.0  Unported.  The data file "albedo_
+simp750.jpg"  is an exception;  the file in question is believed to be
+in the public domain.
+
+----------------------------------------------------------------------
+
+2. Requirements.
+
+Requirements are  moderately  stringent.  To use this package,  you'll
+need:
+
+Linux, Perl 5.8 or above, ImageMagick (or "imagemagick") 6.3 or above,
+"mencoder"(often bundled with "mplayer"), POV-Ray (or "povray") 3.6.1,
+"gifsicle" 1.48 or above,  "intergif" 6.15 or above,  and release 0.60
+or above of a CPAN module named Astro::MoonPhase.
+
+Perl comes preinstalled in most Linux distros.
+
+"imagemagick", "mencoder",  and "povray" are  generally available from
+Linux distro repositories.
+
+"gifsicle" and  "intergif"  may be  available from distro repositories
+or,  for some distros,  you may need to build these  two programs from
+source code.
+
+Astro::MoonPhase is  available  from CPAN.  For more information about
+CPAN, see the associated link below.
+
+Related links:
+
+      gifsicle:  http://freecode.com/projects/gifsicle/
+
+      intergif:  http://freecode.com/projects/intergif/
+
+      mencoder:  Same as for "mplayer"
+
+      mplayer:   http://www.mplayerhq.hu/
+
+      povray:    http://povray.org/
+
+      viewnior:  http://freecode.com/projects/viewnior/
+
+      vlc:       http://www.videolan.org/vlc/
+
+      CPAN:      http://www.cpan.org/
+
+----------------------------------------------------------------------
+
+3. Installation.
+
+No "build" is needed.
+
+To install  the  package, simply copy the three source files listed in
+part 1 to wherever you'd like to store them.  The files should go into
+the same directory and  the user should have  read, write, and execute
+permissions for the directory.
+
+----------------------------------------------------------------------
+
+4. Usage.
+
+4.1. Displaying documentation.
+
+To use  either of the Perl5 scripts provided, go to the directory that
+holds them and execute a command of the form:
+
+      perl FILENAME.pl
+
+Alternatively,  remove the ".pl" filename extensions and set file per-
+missions to 755 octal. If this is done, commands of the following form
+should work:
+
+      FILENAME          # If "." is     in PATH
+or  ./FILENAME          # If "." is not in PATH
+
+If no command-line arguments are specified, program documentation will
+be printed in each case.
+
+4.2. "moonphase2avi" summary.
+
+Usage:  moonphase2avi --avi         # Make high-quality AVI
+        moonphase2avi --gif         # Make animated GIF instead
+        moonphase2avi --needs       # List software requirements
+        moonphase2avi --license     # Show license information
+
+"--avi" creates  an AVI file  called "moonphase.avi" that displays one
+month in the life of  the Moon.  The AVI file is MPEG4-encoded. You'll
+need  write  access to  the  current directory and  about 8 MB of disk
+space. However, the AVI file is only about 210 KB in size.
+
+"--gif" is similar, but  it  creates a low-resolution animated GIF in-
+stead of an AVI.
+
+For software requirements or license information, specify "--needs" or
+"--license".
+
+4.3. "moonphasepic" summary.
+
+Usage:  moonphasepic now   --output=foo.png
+        moonphasepic 0.52  --output=foo.png
+
+        --info=foo.txt    Create an informational text file
+        --width=360       Change image width
+
+This program creates a PNG image file. The image shows the Moon with a
+phase shadow added.
+
+"--output" specifies the image-file name (or pathname).  If "--output"
+isn't used, the image is saved to  "moonphase.png" in  the user's home
+directory.
+
+If "now" is specified, the phase is based on the current date.  A num-
+ber between  zero and  one (inclusive) may be  specified instead.  The
+number specifies a point  in the lunar cycle  (for example: zero = New
+Moon, 0.25 = 1st quarter, 0.50 = Full Moon, and 0.75 = 3rd quarter).
+
+"--info=foo.txt" writes a short description of the image to the speci-
+fied text file. If "--info" isn't used, no text file is created.
+
+To change the image width, use "--width" as shown above.
